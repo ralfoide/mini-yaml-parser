@@ -1,0 +1,30 @@
+# Project: MiniYamlParser -- test data file -- (c) 2012 ralfoide -- Apache License, Version 2.0.
+# This tests a simple flat sequence of strings.
+---
+# comment line
+
+- The first string.
+
+-  The second       value.
+
+   # empty lines are ignored   
+- The third line.
+
+- |
+  This is a multi-line
+  string literal.
+    The identation is preserved as-is.
+    
+- Matching indentation indicates the end of the string literal.
+
+- 2 following are a sequence of mappings (aka list of maps) 
+-
+    key1a: value 1a
+    key1b: value 1b
+
+-   key2a: value 2a
+    key2b: value 2b
+
+- This value is a literal.
+
+...

@@ -1,0 +1,178 @@
+# Project: MiniYamlParser -- test data file -- (c) 2012 ralfoide -- Apache License, Version 2.0.
+---
+format: 1.0
+description: An key/value set used to configure an app of mine. It contains a multi-line script.
+items:
+  - name: intro
+    link:   http://www.example.com/test1
+    dpi:    320
+    text:
+        1: this is the
+        2:      All inner space is    preserved. Rest is trimmed.
+        3:          Interested? 
+    landscape: |
+                load image1.png
+                    resize width 100%
+                    move image 50% 40% to screen 85% 5%
+
+                load image2.png
+                    resize width 10%
+                    move image 0% 100% to screen 3% 88%
+
+                font Sans
+                text 1 at 17% 75% size 10%
+                text 2 at 17% 85% size 10%
+                text 3 at  3% 95% size 5%
+    portrait: |
+                load image1.png
+                    resize height 75%
+                    move image 50% 0% to screen 10% 5%
+
+                load image2.png
+                    resize height 20%
+                    move image 100% 100% to screen 95% 94%
+
+                font Sans
+                text 1 at 3% 88% size 5%
+                text 2 at 3% 93% size 5%
+                text 3 at 3% 98% size 2.9%
+    
+  - name: family
+    link:   http://www.example.com/test2
+    dpi:    320
+    text:
+        1: All your
+        2: Bases
+        3: make
+        4: your time
+        5: belong to us.
+    landscape: |
+                load image3.jpg
+                    resize width 82%
+                    move image 0% 0% to screen 0% 0%
+                
+                load image2.png
+                    resize height 55%
+                    move image 100% 100% to screen 82% 100%
+                
+                font Serif
+                text-color #AAAAAA
+                text 1 at     3% 70% size 10%
+                text 4 right 65% 87.5% size 20%
+                text 5 right 65% 97% size  6%
+    portrait: |
+                load image3.jpg
+                    resize width 100%
+                    move image 0% 0% to screen 0% 68%
+                
+                load image2.png
+                    resize height 30%
+                    move image 50% 50% to screen 2% 22%
+                
+                font Serif
+                text-color #AAAAAA
+                text 2 at  1% 45% size 8%
+                text 3 at  6% 55% size 8%
+                text 4 at -3% 68% size 12%
+                text 5 right 85% 97% size 3.4%
+                
+                load image2.png
+                    resize height 10%
+                    move image 100% 100% to screen 95% 98%
+
+  - name: sleep
+    link:   http://www.example.com/test3
+    dpi:    320
+    text:
+            3: new python
+            2: is the
+            8: Love new features?
+            1: Go
+    landscape: | 
+                load image4.jpg
+                    resize width 100%
+                    move image 50% 72% to screen 50% 50%
+                
+                load image2.png
+                    resize height 55%
+                    move image 50% 100% to screen 80% 100%
+                
+                font Sans
+                text-color #AAAAAA
+                text 1 at  4%   68% size 12%
+                text 4 at  0.5% 88% size 22%
+                text 7 right 72% 95% size  6%
+    portrait: |
+                load image4.jpg
+                    resize max 100%
+                    move image 50% 50% to screen 50% 50%
+                
+                load image2.png
+                    resize height 30%
+                    move image 100% 100% to screen 102% 98%
+                
+                font Sans
+                text-color #AAAAAA
+                text 2 at  1% 10% size 6%
+                text 3 at 20% 15% size 6%
+                text 5 at -2% 26% size 13%
+                text 6 at 10% 37% size 13%
+                text 8 right 75% 90% size 3%
+                text 9 right 75% 93% size 3%
+
+  - name: work
+    link:   http://www.example.com/test4
+    dpi:    320
+    text:
+        1: This FOR
+        2: WORK TIME
+        3: WORK
+        4: TIME
+        5: Continue.
+    landscape: |
+                load image5.jpg
+                    resize width 100%
+                    move image 0% 0% to screen 0% 0%
+                
+                load image2.png
+                    resize height 55%
+                    move image 100% 100% to screen 105% 105%
+
+                font Serif
+                text-color #AAAAAA
+                text 1 at 10% 70% size 10%
+                text 2 at  0% 89% size 20%
+                text 5 center 40% 98% size 5%
+    portrait: |
+                load image5.jpg
+                    resize width 220%
+                    move image 91% 0% to screen 100% 0%
+                
+                load image2.png
+                    resize height 30%
+                    move image 100% 100% to screen 110% 95%
+
+                font Serif
+                text-color #AAAAAA
+                text 1 at  0% 70% size 6%
+                text 3 at -2% 81.5% size 14%
+                text 4 at 25% 93% size 14%
+                text 5 center 50% 98% size 2.5%
+
+script_syntax: | 
+        - empty lines are ignored.
+        - lines starting with a # are comments.
+        Images:
+          load image.jpg (or image.png) =| looks for it in assets/welcome or sdcard.
+          resize width|height|max nn%  => resize image width or height to x% of screen.
+          move image x% y% to screen x% y% => translation to match image point to screen point.
+                Note: 0% is top or left, 100% is bottom or right.
+        Text:
+          font Serif|Sans|Sans-Bold => applies to all following text
+          text-color #RRGGBB        => in hex, no alpha, applies to all following text
+          text index at|center|right|left x% y% size h%
+                x/y% are in screen coordinates.
+                size is % of the screen height (e.g screen 1000 pixels x 1% => font 10 point)   
+...
+# end
+
