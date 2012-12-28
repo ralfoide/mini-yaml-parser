@@ -53,8 +53,8 @@ import java.util.regex.Pattern;
  * <p/>
  * Some obvious caveats:
  * <ul>
- * <li> This is NOT a YAML-compliant parser. It's a subset at best and claims NO
- *      compatibility with the YAML spec whatsoever.
+ * <li> This is NOT a YAML-compliant parser.
+ *      It's a subset at best and claims only anecdotal compatibility with the YAML spec.
  * <li> Accepted line breaks are LF, CR or CR+LF.
  * <li> Parser uses a {@link Reader} interface so it's up to the caller to decide on the
  *      charset.
@@ -63,6 +63,7 @@ import java.util.regex.Pattern;
  * <li> Only explicit documents are supported so --- and ... are mandatory.
  * <li> It's any error to try to mix a sequence (array) and a key mapping in the same block.
  * <li> A key can be anything except whitespace and the colon character (:).
+ * <li> No reflection or Java bean support. Readers uses the underlying list/maps to retrieve values.
  * </ul>
  */
 public final class MiniYamlParser {
