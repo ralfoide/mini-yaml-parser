@@ -38,7 +38,9 @@ public final class MiniYamlParserTest {
         assertEquals(1.0, r.getMapping().get("format").getDouble(), 1e-3);
         assertEquals("intro", r.getMapping().get("items").getSequence().get(0).getKeyString("name"));
         assertEquals("intro", r.getMapping().get("items").getSequence().get(0).getMapping().get("name").getString());
+        assertEquals(320, r.getMapping().get("items").getSequence().get(0).getKeyInt("dpi", 0));
         assertEquals(320, r.getMapping().get("items").getSequence().get(0).getMapping().get("dpi").getInt());
+        assertEquals(320, r.getMapping().get("items").getSequence().get(0).getKeyInt("not a key", 320));
 
         assertEquals(
             "{description='A key/value set used to configure an app of mine. It contains a multi-line script.', " +

@@ -107,6 +107,10 @@ public class Block {
         return Collections.unmodifiableMap(mMapping);
     }
 
+    public Block getKey(String key) {
+        return mMapping.get(key);
+    }
+
     /** A shortcut for {@code getMap().get(key).getLiteral()} for string literal values. */
     public String getKeyString(String key) throws ParserException {
         Block value = mMapping.get(key);
@@ -119,6 +123,26 @@ public class Block {
             return value.getString();
         }
         return null;
+    }
+
+    public double getKeyDouble(String key, double defaultValue)
+                  throws ParserException, NumberFormatException {
+        Block value = mMapping.get(key);
+        if (value == null) {
+            return defaultValue;
+        } else {
+            return value.getDouble();
+        }
+    }
+
+    public int getKeyInt(String key, int defaultValue)
+               throws ParserException, NumberFormatException {
+        Block value = mMapping.get(key);
+        if (value == null) {
+            return defaultValue;
+        } else {
+            return value.getInt();
+        }
     }
 
     public Set<String> getKeys() {
