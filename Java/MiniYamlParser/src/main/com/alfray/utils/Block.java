@@ -111,7 +111,7 @@ public class Block {
         return mMapping.get(key);
     }
 
-    /** A shortcut for {@code getMap().get(key).getLiteral()} for string literal values. */
+    /** A shortcut for {@code getMapping().getKey(key).getString()} for string literal values. */
     public String getKeyString(String key) throws ParserException {
         Block value = mMapping.get(key);
         if (value != null) {

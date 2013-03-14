@@ -1,0 +1,18 @@
+# Project: MiniYamlParser -- test data file -- (c) 2012 ralfoide -- Apache License, Version 2.0.
+# This tests a simple flat key:value document. Value strings are space-trimmed.
+---
+# comment line
+
+key1: value 1
+
+key_2 :   value    2
+
+   # empty lines are ignored   
+key3  :value3
+
+key4: |
+  This is a multi-line
+  string literal.
+    The identation is preserved as-is.
+key5: Matching indentation indicates the end of the string literal.
+...

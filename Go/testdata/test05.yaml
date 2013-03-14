@@ -1,0 +1,21 @@
+# Project: MiniYamlParser -- test data file -- (c) 2012 ralfoide -- Apache License, Version 2.0.
+# This tests a simple flat key:value document. Value strings are space-trimmed.
+---
+key1: value 1
+key2:
+    - value 2a
+    - value 2b
+key3: value 3
+key4:
+    - 
+      key4a:
+        key4a1: value 4a1
+    - 
+      key4b:
+        key4b1: value 4b1
+        key4b2: value 4b2
+    - key4c:
+        key4c1: value 4c1
+        key4c2: value 4c2
+key5: value 5
+...
