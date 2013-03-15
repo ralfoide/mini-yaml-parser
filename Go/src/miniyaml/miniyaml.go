@@ -30,19 +30,24 @@ func NewParser() *MiniYaml {
 }
 
 //----
+
+// Error returned by the parser.
 type ParserError struct {
     Line    int
     Msg     string
 }
 
+// Constructs an error with no line number (sets it to -1)
 func NewParserError(msg string) error {
     return NewLineError(-1, msg)
 }
 
+// Constructs an error using the input's current line number.
 func NewInputError(in *input, msg string) error {
     return NewLineError(in.LineCount, msg)
 }
 
+// Constructs an error with the given line number.
 func NewLineError(line int, msg string) error {
     return &ParserError{ line, msg }
 }
@@ -53,6 +58,46 @@ func (e *ParserError) Error() string {
 
 
 //----
+
+// Mini YAML-like parser.
+//
+// This is NOT a YAML-compliant parser, see the caveats below.
+//
+// This parser only reads the following minimal subset of the YAML spec
+// (see http://yaml.org):
+//
+// ---  <-- start of document (mandatory)
+// #    <-- a comment line, ignored.
+//      <-- empty lines are ignored (except in multi-line string literals)
+// key:          <-- starts a key block in a mapping block (e.g. parent container.)
+// key: literal  <-- literal is not typed and internally kept as a string.
+// key: |        <-- '|' means everything that follows is a multi-type string till
+//                   another key of the same indentation OR LESSER is found.
+// - [entry]     <-- define an element in a sequence (e.g. an array).
+// ...  <-- end of document (mandatory)
+//
+// When a line "key:\n" is parsed, it creates a key-based entity in the container,
+// initially untyped. The container is then left untyped if nothing is defined later.
+// Otherwise it is transformed into a string literal or a sequence (array) or a map (key/values)
+// depending on the next line.
+//
+// This implementation does not support anything not mentioned explicitly above, e.g.
+// sequences of sequences, or mappings of mappings, (e.g. { } or [ ]), compact nested mapping,
+// tags or references, folded scalars, etc.
+//
+// Some obvious caveats:
+// - This is NOT a YAML-compliant parser.
+//   It's a subset at best and claims only anecdotal compatibility with the YAML spec.
+// - Accepted line breaks are LF, CR or CR+LF.
+// - Parser uses a []byte interface so it's up to the caller to decide on the charset
+//   (meaning the input relies on the default string([]byte) behavior.)
+// - Document directives are ignored. In fact anything before or after the document
+//   markers (--- and ...) are ignored.
+// - Only explicit documents are supported so --- and ... are mandatory.
+// - It's any error to try to mix a sequence (array) and a key mapping in the same block.
+// - A key can be anything except whitespace and the colon character (:).
+// - No interface{} support. Callers uses the underlying list/maps to retrieve values (cf Block API)
+//
 type MiniYaml struct {
     mRoot    *Block
 }

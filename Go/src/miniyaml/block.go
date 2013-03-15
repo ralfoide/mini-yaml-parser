@@ -26,6 +26,9 @@ import (
 )
 
 //----
+
+// A block is either a literal or a mapping or a sequence.
+// Note the API voluntarily maps the Java one.
 type Block struct {
     mLiteral    *string
     mMapping    *map[string] *Block
@@ -113,7 +116,7 @@ func (b *Block) GetKey(key string) *Block {
     return (*b.mMapping)[key];
 }
 
-// A shortcut for Block.GetMapping().GetKey(key).GetString()} for string literal values. */
+// A shortcut for Block.GetMapping().GetKey(key).GetString()} for string literal values.
 func (b *Block) GetKeyString(key string) (string, error) {
     value := b.GetKey(key)
     if value != nil {
