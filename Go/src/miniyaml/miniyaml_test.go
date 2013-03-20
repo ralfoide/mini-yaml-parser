@@ -218,51 +218,7 @@ func createParser(t *testing.T, fileName string) (*miniyaml.Block, error) {
     if err != nil || data_bin == nil {
         t.Fatal(err)
     }
-    
+
     p := miniyaml.NewParser()
     return p.Parse(data_bin)
 }
- 
-// package hmon_test
-
-// import (
-    // "hmon/hmon"
-    // "testing"
-// )
-
-// func TestConfig_MakeConfig(t *testing.T) {
-    // blob := []byte(`{
-            // "CryptKey": "0123456789",
-            // "Cameras": [
-                // { "Name": "front cam", "Url": "http://user1:pass1@foscam1.local:80/videostream.cgi" },
-                // { "Name": "back  cam", "Url": "http://user2:pass2@panasonic12:80/nphMotionJpeg?Resolution=320x240&Quality=Standard" } ],
-            // "Uptimes": [
-                // { "Name": "PC 1", "IP": "192.168.2.1" },
-                // { "Name": "PC 2", "IP": "192.168.2.1" },
-                // { "Name": "PC 3", "IP": "192.168.2.3" } ] }`)
-        
-    // actual, err := hmon.NewConfig(blob)
-    // if err != nil {
-        // t.Error("JSON decoder failed with err: ", err)
-    // }
-    
-    // expected := hmon.Config {
-            // CryptKey: "0123456789",
-            // Cameras: []hmon.CameraInfo {
-                // hmon.CameraInfo{ Name: "front cam", Url: "http://user1:pass1@foscam1.local:80/videostream.cgi" },
-                // hmon.CameraInfo{ Name: "back  cam", Url: "http://user2:pass2@panasonic12:80/nphMotionJpeg?Resolution=320x240&Quality=Standard" },
-            // },
-            // Uptimes: []hmon.ServerInfo {
-                // hmon.ServerInfo{ Name: "PC 1", IP: "192.168.2.1" },
-                // hmon.ServerInfo{ Name: "PC 2", IP: "192.168.2.1" },
-                // hmon.ServerInfo{ Name: "PC 3", IP: "192.168.2.3" },
-            // },
-    // }
-    
-    // if !hmon.Equal(expected.Cameras, actual.Cameras) ||
-       // !hmon.Equal(expected.Uptimes, actual.Uptimes) ||
-       // expected.CryptKey != actual.CryptKey {
-        // t.Errorf("Expected %#v, got %#v", expected, actual)
-    // }
-// }
-
