@@ -76,7 +76,7 @@ func TestNew(t *testing.T) {
 }
 
 func Test00(t *testing.T) {
-    b, err := createParser(t, "test00.yaml")
+    b, err := createTestFileParser(t, "test00.yaml")
     expectNotNil(t, b)
     expectNotNil(t, err)
     expectEqual(t, 
@@ -85,13 +85,13 @@ func Test00(t *testing.T) {
 }
 
 func Test01(t *testing.T) {
-    b, err := createParser(t, "test01.yaml")
+    b, err := createTestFileParser(t, "test01.yaml")
     expectNotNil(t, b)
     expectNil(t, err)
 }
 
 func Test02(t *testing.T) {
-    b, err := createParser(t, "test02.yaml")
+    b, err := createTestFileParser(t, "test02.yaml")
     expectNotNil(t, b)
     expectNil(t, err)
 
@@ -104,7 +104,7 @@ func Test02(t *testing.T) {
 }
 
 func Test03(t *testing.T) {
-    b, err := createParser(t, "test03.yaml")
+    b, err := createTestFileParser(t, "test03.yaml")
     expectNotNil(t, b)
     expectNil(t, err)
 
@@ -123,7 +123,7 @@ func Test03(t *testing.T) {
 }
 
 func Test04(t *testing.T) {
-    b, err := createParser(t, "test04.yaml")
+    b, err := createTestFileParser(t, "test04.yaml")
     expectNotNil(t, b)
     expectNil(t, err)
 
@@ -139,7 +139,7 @@ func Test04(t *testing.T) {
 }
 
 func Test05(t *testing.T) {
-    b, err := createParser(t, "test05.yaml")
+    b, err := createTestFileParser(t, "test05.yaml")
     expectNotNil(t, b)
     expectNil(t, err)
 
@@ -157,7 +157,7 @@ func Test05(t *testing.T) {
 }
 
 func Test10(t *testing.T) {
-    b, err := createParser(t, "test10.yaml")
+    b, err := createTestFileParser(t, "test10.yaml")
     expectNotNil(t, b)
     expectNil(t, err)
 
@@ -191,7 +191,7 @@ func Test10(t *testing.T) {
 }
 
 func Test10_GetAPI(t *testing.T) {
-    r, err := createParser(t, "test10.yaml")
+    r, err := createTestFileParser(t, "test10.yaml")
     expectNotNil(t, r)
     expectNil(t, err)
 
@@ -212,7 +212,7 @@ func Test10_GetAPI(t *testing.T) {
 
 //----
 
-func createParser(t *testing.T, fileName string) (*miniyaml.Block, error) {
+func createTestFileParser(t *testing.T, fileName string) (*miniyaml.Block, error) {
     pwd, _ := os.Getwd()
     data_bin, err := ioutil.ReadFile(filepath.Join(pwd, "..", "..", "testdata", fileName))
     if err != nil || data_bin == nil {
