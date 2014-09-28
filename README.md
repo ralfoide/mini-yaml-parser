@@ -1,4 +1,4 @@
-# Mini YAML Parser # 
+# Mini YAML Parser #
 
 A simplified YAML-like parser that supports a minimal subset of the YAML spec, using a minimal Java and Go implementation.
 
