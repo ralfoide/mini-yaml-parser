@@ -2,6 +2,8 @@
 
 A simplified YAML-like parser that supports a minimal subset of the YAML spec, using a minimal Java and Go implementation.
 
+*Code license:* Apache License 2.0
+
 ***
 
 This parser only reads the following minimal subset of the [YAML spec](http://yaml.org):
